@@ -70,10 +70,50 @@
       "__order__": {
         "timestamp": "DESC"
       }
-    }
+    },
+
+    "consumption_by_device": {
+      "roundedTimestamp": "timestamp",
+      "deciveId": "text",
+      "timestamp": "timestamp",
+      "consumption": "int",
+
+      "__primaryKey__": [ "roundedTimestamp" ],
+      "__clusteringKey__": [ "deciveId" ],
+      "__order__": {
+        "timestamp": "DESC"
+      }
+    },
+
+    "consumption_by_timestamp": {
+      "roundedTimestamp": "timestamp",
+      "timestamp": "timestamp",
+      "deciveId": "text",
+      "consumption": "int",
+
+      "__primaryKey__": [ "roundedTimestamp" ],
+      "__clusteringKey__": [ "timestamp" ],
+      "__order__": {
+        "timestamp": "DESC"
+      }
+    },
+
+    "aggr_consumption_by_device": {
+      "roundedTimestamp": "timestamp",
+      "deciveId": "text",
+      "consumption": "int",
+
+      "__primaryKey__": [ "roundedTimestamp" ],
+      "__clusteringKey__": [ "deciveId" ],
+      "__order__": {
+        "consumption": "DESC"
+      }
+    },
   },
 
   "commandTables": ["commands"],
   "notificationTables": ["notifications_by_timestamp", "notifications_by_deviceid"],
+  "consumptionTables": ["consumption_by_device","consumption_by_timestamp"],
+  "aggregateTables": ["aggr_consumption_by_device"],
   "commandUpdatesTables": ["command_updates"]
 }
